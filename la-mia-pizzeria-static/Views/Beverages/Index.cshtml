@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Beverage";
+
+    var listings = new List<Listing> {
+        new Listing {
+            Name = "Coca-Cola",
+            Image = "/img/coca-cola.png",
+            Description = "Classic cola made with natural flavors and no added preservatives.",
+            Price = 2.59,
+            IsNew = false
+        },
+        new Listing {
+            Name = "Sprite",
+            Image = "/img/sprite.png",
+            Description = "Lemon-lime soda with a crisp, clean taste.",
+            Price = 1.79,
+            IsNew = false
+        },
+        new Listing {
+            Name = "Fanta",
+            Image = "/img/fanta.png",
+            Description = "Orange-flavored soda that's fun, fruity, and full of flavor.",
+            Price = 1.28,
+            IsNew = false
+        },
+        new Listing {
+            Name = "Dr Pepper",
+            Image = "/img/dr-pepper.png",
+            Description = "Unique blend of 23 flavors that's been satisfying taste buds since 1885.",
+            Price = 1.49,
+            IsNew = false
+        },
+        new Listing {
+            Name = "Mountain Dew",
+            Image = "/img/mountain-dew.png",
+            Description = "Citrus-flavored soda that's bold, refreshing, and energizing.",
+            Price = 2.29,
+            IsNew = false
+        },
+        new Listing {
+            Name = "Pepsi",
+            Image = "/img/pepsi.png",
+            Description = "Refreshing cola made with natural flavors and no artificial preservatives.",
+            Price = 2.19,
+            IsNew = false
+        },
+    };
+}
+
+@section _Jumbotron {
+    @await Html.PartialAsync("_BeveragesJumbotron")
+}
+
+
+<!-- Menu Section -->
+<div class="max-w-screen-xl mx-auto">
+    <h1 class="font-bold text-6xl text-center mb-5">Beverages</h1>
+
+    <!-- Listings -->
+    <div class="grid-cols-3	grid">
+
+        @foreach (var listing in listings)
+        {
+            <div class="card w-96 bg-base-100 shadow-xl">
+                <figure><img src="@listing.Image" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        @listing.Name
+                        @if (listing.IsNew)
+                        {
+                            <span class="badge badge-secondary">NEW</span>
+                        }
+                    </h2>
+                    <p>@listing.Description</p>
+                    <div class="card-actions items-center justify-between">
+                        <span class="font-bold text-2xl">$@listing.Price</span>
+                        <button class="btn btn-primary">Order Now</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
